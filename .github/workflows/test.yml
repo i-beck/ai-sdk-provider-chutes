@@ -1,0 +1,134 @@
+name: Tests
+
+# Run tests on:
+# 1. Pull requests targeting main, master, DEV, or beta-* branches
+# 2. Pushes directly to main/master/DEV/beta-* (e.g., merge commits)
+# Does NOT run on every push to feature branches
+on:
+  push:
+    branches:
+      - main
+      - master
+      - DEV
+      - 'beta-*'
+  pull_request:
+    branches:
+      - main
+      - master
+      - DEV
+      - 'beta-*'
+
+jobs:
+  # Fast unit tests (~30 seconds)
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+  # Integration tests - requires API key (~7 minutes with reasoning models)
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    # Only run if we have access to secrets (not available in forks)
+    if: github.event.pull_request.head.repo.full_name == github.repository || github.event_name == 'push'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run integration tests
+        run: npm run test:integration
+        env:
+          CHUTES_API_KEY: ${{ secrets.CHUTES_API_KEY }}
+
+  # Slow tests (video generation) - runs on PRs to protected branches (~10+ minutes)
+  slow-tests:
+    name: Slow Tests (Video Generation)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # Run on PRs (if not from a fork) and on pushes to protected branches
+    if: github.event.pull_request.head.repo.full_name == github.repository || github.event_name == 'push'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run slow tests
+        run: npm run test:slow
+        env:
+          CHUTES_API_KEY: ${{ secrets.CHUTES_API_KEY }}
+
+  # TypeScript type checking
+  typecheck:
+    name: Type Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run type check
+        run: npm run typecheck
+
+  # Build verification
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build package
+        run: npm run build
+
