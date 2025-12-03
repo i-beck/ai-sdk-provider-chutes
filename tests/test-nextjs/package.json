@@ -1,0 +1,23 @@
+{
+  "name": "test-nextjs-chutes-provider",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Test Next.js app for @chutes-ai/ai-sdk-provider",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "node test-api-route.mjs"
+  },
+  "dependencies": {
+    "@chutes-ai/ai-sdk-provider": "file:../..",
+    "ai": "^5.0.0",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.6",
+    "dotenv": "^17.2.3"
+  }
+}

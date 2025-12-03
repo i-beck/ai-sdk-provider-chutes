@@ -1,0 +1,70 @@
+{
+  "name": "@chutes-ai/ai-sdk-provider",
+  "version": "0.1.0",
+  "description": "Chutes.ai provider for the Vercel AI SDK",
+  "keywords": [
+    "ai",
+    "ai-sdk",
+    "provider",
+    "chutes",
+    "llm",
+    "openai",
+    "anthropic"
+  ],
+  "homepage": "https://github.com/tududes/ai-sdk-provider-chutes",
+  "bugs": {
+    "url": "https://github.com/tududes/ai-sdk-provider-chutes/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tududes/ai-sdk-provider-chutes.git"
+  },
+  "license": "MIT",
+  "author": "Chutes.ai",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run tests/unit",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:slow": "vitest run tests/slow",
+    "test:all": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "ai": ">=4.0.0"
+  },
+  "dependencies": {
+    "@ai-sdk/provider": "^2.0.0",
+    "@ai-sdk/provider-utils": "^3.0.17"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@vitest/ui": "^4.0.8",
+    "dotenv": "^17.2.3",
+    "tsup": "^8.5.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.8"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
