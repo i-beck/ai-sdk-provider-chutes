@@ -22,5 +22,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dynamic model discovery
 - 339 tests with comprehensive coverage
 
-[Unreleased]: https://github.com/tududes/ai-sdk-provider-chutes/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/tududes/ai-sdk-provider-chutes/releases/tag/v0.1.0
+[Unreleased]: https://github.com/chutesai/ai-sdk-provider-chutes/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/chutesai/ai-sdk-provider-chutes/releases/tag/v0.1.0

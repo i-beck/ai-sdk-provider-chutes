@@ -32,7 +32,7 @@ This project follows [Semantic Versioning 2.0.0](https://semver.org/):
 - **MINOR** version for new functionality in a backwards compatible manner
 - **PATCH** version for backwards compatible bug fixes
 
-All releases are tagged and available on the [releases page](https://github.com/tududes/ai-sdk-provider-chutes/releases).
+All releases are tagged and available on the [releases page](https://github.com/chutesai/ai-sdk-provider-chutes/releases).
 
 ## Changelog
 
@@ -1480,7 +1480,7 @@ If you encounter issues not covered here:
 
 1. **Check the examples**: See the [`examples/`](./examples) directory for working code
 2. **Review tests**: Integration tests in [`tests/integration/`](./tests/integration) show real usage
-3. **GitHub Issues**: [Report a bug](https://github.com/tududes/ai-sdk-provider-chutes/issues)
+3. **GitHub Issues**: [Report a bug](https://github.com/chutesai/ai-sdk-provider-chutes/issues)
 4. **Chutes.ai Discord**: [Join the community](https://discord.gg/chutes)
 5. **Email Support**: support@chutes.ai
 
@@ -1501,12 +1501,12 @@ MIT © [Chutes.ai](https://chutes.ai)
 
 - [Chutes.ai Website](https://chutes.ai)
 - [Vercel AI SDK Documentation](https://sdk.vercel.ai/docs)
-- [GitHub Repository](https://github.com/tududes/ai-sdk-provider-chutes)
+- [GitHub Repository](https://github.com/chutesai/ai-sdk-provider-chutes)
 - [npm Package](https://www.npmjs.com/package/@chutes-ai/ai-sdk-provider)
 
 ## Support
 
-- GitHub Issues: [Report a bug](https://github.com/tududes/ai-sdk-provider-chutes/issues)
+- GitHub Issues: [Report a bug](https://github.com/chutesai/ai-sdk-provider-chutes/issues)
 - Chutes.ai Discord: [Join the community](https://discord.gg/chutes)
 - Email: support@chutes.ai
 
