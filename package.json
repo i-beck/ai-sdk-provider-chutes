@@ -11,13 +11,13 @@
     "openai",
     "anthropic"
   ],
-  "homepage": "https://github.com/tududes/ai-sdk-provider-chutes",
+  "homepage": "https://github.com/chutesai/ai-sdk-provider-chutes",
   "bugs": {
-    "url": "https://github.com/tududes/ai-sdk-provider-chutes/issues"
+    "url": "https://github.com/chutesai/ai-sdk-provider-chutes/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tududes/ai-sdk-provider-chutes.git"
+    "url": "git+https://github.com/chutesai/ai-sdk-provider-chutes.git"
   },
   "license": "MIT",
   "author": "Chutes.ai",

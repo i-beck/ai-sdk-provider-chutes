@@ -2,13 +2,11 @@ name: Tests
 
 # Run tests on:
 # 1. Pull requests targeting main, master, DEV, or beta-* branches
-# 2. Pushes directly to main/master/DEV/beta-* (e.g., merge commits)
-# Does NOT run on every push to feature branches
+# 2. Pushes directly to DEV/beta-* (for commits not via PR)
+# Does NOT run on pushes to main/master (those only happen via PR merges)
 on:
   push:
     branches:
-      - main
-      - master
       - DEV
       - 'beta-*'
   pull_request:
@@ -45,8 +43,10 @@ jobs:
     name: Integration Tests
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    # Only run if we have access to secrets (not available in forks)
-    if: github.event.pull_request.head.repo.full_name == github.repository || github.event_name == 'push'
+    # Run on PRs (if not from a fork) and on pushes to beta-* branches (but NOT DEV)
+    if: |
+      (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||
+      (github.event_name == 'push' && github.ref != 'refs/heads/DEV')
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -70,8 +70,10 @@ jobs:
     name: Slow Tests (Video Generation)
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    # Run on PRs (if not from a fork) and on pushes to protected branches
-    if: github.event.pull_request.head.repo.full_name == github.repository || github.event_name == 'push'
+    # Run on PRs (if not from a fork) and on pushes to beta-* branches (but NOT DEV)
+    if: |
+      (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||
+      (github.event_name == 'push' && github.ref != 'refs/heads/DEV')
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
